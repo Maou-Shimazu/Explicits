@@ -1,10 +1,8 @@
 #include <iostream>
 #include <map>
-#include <fmt.h>
-// #include <fmt/core.h>
-// #include <src/format.cc>
+#include "includes/fmt.h"
 
-#include "srgt.hpp"
+#include "includes/srgt.hpp"
 
 //     std::map<std::string, int> animals = { {"fox", 0},{"sheep",0},{"turtle",0} };
 //     std::cout << "Hello user. You will be prompted ten(10) times to enter the name of an animal." << std::endl;
