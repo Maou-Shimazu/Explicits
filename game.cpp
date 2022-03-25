@@ -1,3 +1,4 @@
+#define _GLIBCXX_USE_CXX11_ABI 0
 #include <iostream>
 #include <map>
 /**
@@ -36,13 +37,23 @@
 int main(){
     bool game_is_running = true;
     player.insert(std::pair<std::string, std::string>("attack", "16"));
-
+    player.insert(std::pair<std::string, std::string>("health", "100"));
+    int player_health = stoi(player["health"]);
+    int player_attack = stoi(player["attack"]);
     while(game_is_running != false){
         std::cout << "Enter Player Name: ";
         std::cin >> player["name"];
-        std::cout <<"Player name: "<< player["name"];
+        std::cout <<"Player name: "<< player["name"] << std::endl;
+        // std::cout << stoi(player["health"]);
+        std::cout << "Health: " << player_health << std::endl;
+        std::cout << "Attack: " << player_attack << std::endl;
+        
         game_is_running = false;
+        
     }
 
     return 0;
 }
+// i am so lost... -huei
+//bing bong gonna fuck your life up 
+//lol
