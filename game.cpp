@@ -1,6 +1,5 @@
 #include <iostream>
 #include <map>
-#include "includes/fmt.h"
 /**
  /// * Fmt is the C++ formatting library. For more information checkout https://github.com/fmtlib/fmt
 * */
@@ -41,7 +40,7 @@ int main(){
     while(game_is_running != false){
         std::cout << "Enter Player Name: ";
         std::cin >> player["name"];
-        fmt::print("Player name: {}", player["name"]);
+        std::cout <<"Player name: "<< player["name"];
         game_is_running = false;
     }
 
