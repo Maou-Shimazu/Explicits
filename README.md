@@ -11,4 +11,4 @@
 #### Set up [vscode with mingw64](https://www.youtube.com/watch?v=oQHdm6TpLsU)
 #### Contributing to [repositories on github](https://youtu.be/b_aF5zk22cA?t=176)
 
-###### Designed by Maou-Shimazu.
+###### Designed by Maou-Shimazu <--- The Big Brain Guy.
