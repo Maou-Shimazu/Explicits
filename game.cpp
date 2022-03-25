@@ -9,11 +9,6 @@
 /**
  /// * Explicit is where all definitions should go, impliment everything in the header file like a distingushed individual.
 **/
-
-//     std::map<std::string, int> animals = { {"fox", 0},{"sheep",0},{"turtle",0} };
-//     std::cout << "Hello user. You will be prompted ten(10) times to enter the name of an animal." << std::endl;
-//     std::cout << "You are only allowed to enter animals from the list [fox, sheep, turtle]. Thank you." << std::endl;
-
 //     for (int x = 1; x <= 10; x++)
 //     {
 //         std::string animal_name;
@@ -32,10 +27,6 @@
 
 //     }
 
-//     std::cout << "fox    --> " << animals["fox"] << std::endl;
-//     std::cout << "sheep  --> " << animals["sheep"] << std::endl;
-//     std::cout << "turtle --> " << animals["turtle"] << std::endl;
-
 /**
  * * Trash comments: Put useless/useful code here
  * player["health"] = std::to_string(player_health);
@@ -47,6 +38,11 @@
  *    
  *  std::cout << "Enter new health: ";
     std::cin >> p.health;
+ * 
+ * std::map <std::string, std::string>::iterator it;
+   for(it = player.begin(); it != player.end(); ++it){
+       std::cout << it->first << ": " << it->second << ", ";
+   }   
  */
 
 int main(){
@@ -57,10 +53,14 @@ int main(){
     
     while(game_is_running != false){
         std::cout << "Enter Player Name: ";
-        std::cin >> player["name"];
-        std::cout <<"Player name: "<< player["name"] << std::endl;
+        std::cin >> player["Name"];
+
         std::cout << "Health: " << p.health << std::endl;
         std::cout << "Attack: " << p.attack << std::endl;
+
+        print(player_options);
+        player_stats();
+        
         game_is_running = false;
     }
 
