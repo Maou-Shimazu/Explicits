@@ -9,7 +9,10 @@
 
 template<class T>
 void print(T out){
-    std::cout << out << std::endl;
+    std::cout << out << "\n";
+}
+void print(){
+    std::cout << std::flush;
 }
 
 // map of player values

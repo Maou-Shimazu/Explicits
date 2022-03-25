@@ -54,13 +54,21 @@ int main(){
     while(game_is_running != false){
         std::cout << "Enter Player Name: ";
         std::cin >> player["Name"];
-
-        std::cout << "Health: " << p.health << std::endl;
-        std::cout << "Attack: " << p.attack << std::endl;
-
-        print(player_options);
-        player_stats();
         
+        print();
+        player_stats();
+
+        bool round = true;
+        while (round != false) {
+            print(player_options);
+            uint16_t ans; std::cin >> ans;
+            switch(ans){
+                case 1: break;
+                case 2: break;
+                case 3: player_stats();
+                case 505: round = false; break;
+            }
+        }
         game_is_running = false;
     }
 
