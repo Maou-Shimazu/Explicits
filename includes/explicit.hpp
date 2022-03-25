@@ -11,9 +11,7 @@ template<class T>
 void print(T out){
     std::cout << out << "\n";
 }
-void print(){
-    std::cout << std::flush;
-}
+auto endline = [] { std::cout << std::endl; };
 
 // map of player values
 std::map<std::string, std::string> player = {

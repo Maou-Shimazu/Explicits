@@ -42,7 +42,13 @@
  * std::map <std::string, std::string>::iterator it;
    for(it = player.begin(); it != player.end(); ++it){
        std::cout << it->first << ": " << it->second << ", ";
-   }   
+   }
+ * * Lambda is either:
+    auto variable = [] (new variable) { //body }
+ *  auto variable = [new variable] { //body }
+ * 
+ *  int n = 0;
+ *  auto variable_name = [&, n] (int new_variable) { do stuff with n and new_variable }  
  */
 
 int main(){
@@ -55,7 +61,7 @@ int main(){
         std::cout << "Enter Player Name: ";
         std::cin >> player["Name"];
         
-        print();
+        endline();
         player_stats();
 
         bool round = true;
