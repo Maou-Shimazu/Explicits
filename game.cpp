@@ -1,9 +1,13 @@
 #include <iostream>
 #include <map>
 #include "includes/fmt.h"
-
-#include "includes/srgt.hpp"
-
+/**
+ /// * Fmt is the C++ formatting library. For more information checkout https://github.com/fmtlib/fmt
+* */
+#include "includes/explicit.hpp"
+/**
+ /// * Explicit is where all definitions should go, impliment everything in the header file like a distingushed individual.
+**/
 //     std::map<std::string, int> animals = { {"fox", 0},{"sheep",0},{"turtle",0} };
 //     std::cout << "Hello user. You will be prompted ten(10) times to enter the name of an animal." << std::endl;
 //     std::cout << "You are only allowed to enter animals from the list [fox, sheep, turtle]. Thank you." << std::endl;
