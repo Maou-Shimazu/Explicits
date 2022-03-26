@@ -5,7 +5,10 @@
 #include <vector>
 #include <string>
 #include <array>
-#include <ctime>
+#include <random>
+
+typedef std::mt19937 RNG; // RNG is a type that references the mersenne random number generator of c++11
+RNG rng; // generator object
 
 template<class T>
 void print(T out){
@@ -23,7 +26,7 @@ auto decor = [] { std::cout << "==================>" << "\n"; };
 std::map<std::string, std::string> player = {
     {"Name", ""},
     {"Health", "100"},
-    {"Attack", "13~24"},
+    {"Attack", "16~20"},
     {"Heal", "10"},
 }; // name, health, attack, heal, 
 
@@ -31,7 +34,7 @@ std::map<std::string, std::string> player = {
 std::map<std::string, std::string> monster = {
     {"Name", "Marx"},
     {"Health", "100"},
-    {"Attack", "15~20"},
+    {"Attack", "18"},
 }; // name, health, attack
 
 std::vector<std::string> monster_names = {
@@ -72,16 +75,13 @@ void monster_stats(){
 }
 
 void player_attack(){
-    srand((unsigned)time(0));
-    int min = 13, max = 24;
-    m.health = m.health - rand() % (max - min + 1); //remove rand
+    std::uniform_int_distribution<uint32_t> range(16,20);
+    m.health = m.health - range(rng); //remove rand
     monster["health"] = std::to_string(m.health);
 }
 
 void monster_attack(){
-    srand((unsigned)time(0));
-    int min = 15, max = 20;
-    p.health = p.health - rand() % (max - min + 1); // remove rand
+    p.health = p.health - 18; // remove rand
     player["health"] = std::to_string(p.health);
 }
 

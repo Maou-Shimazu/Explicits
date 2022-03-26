@@ -1,30 +1,8 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
-#include <iostream>
-#include <map>
-/**
- /// * Fmt is the C++ formatting library. For more information checkout https://github.com/fmtlib/fmt
-* */
 #include "includes/explicit.hpp"
 /**
  /// * Explicit is where all definitions should go, impliment everything in the header file like a distingushed individual.
 **/
-//     for (int x = 1; x <= 10; x++)
-//     {
-//         std::string animal_name;
-//         std::cout << "Enter an animal name (" << x << ")";
-//         std::cin >> animal_name;
-
-//         std::map <std::string, int>::iterator it;
-
-//         for (it = animals.begin(); it != animals.end(); it++)
-//         {
-//             if (it->first == animal_name)
-//             {
-//                 it->second++;
-//             }
-//         }
-
-//     }
 
 /**
  * * Trash comments: Put useless/useful code here
