@@ -63,10 +63,14 @@ int main(){
         
         endline();
         player_stats();
-
+        endline();
+        monster_stats();
+        endline();
         bool round = true;
         while (round != false) {
+
             print(player_options);
+            std::cout << "====> ";
             uint16_t ans; std::cin >> ans;
             switch(ans){
                 case 1: break;

@@ -45,8 +45,15 @@ Player p; // struct to interface with player value easier
 std::vector<uint8_t> levels;
 
 void player_stats(){
-    for(auto i : player){
-        std::cout << i.first << ": " << i.second << ", ";
+    //std::map<std::string, std::string>::reverse_iterator i;
+    for(auto i = player.rbegin(); i != player.rend(); ++i){
+        std::cout << i->first << ": " << i->second << ", ";
+    }
+}
+
+void monster_stats(){
+    for(auto i = monster.rbegin(); i != monster.rend(); ++i){
+        std::cout << i->first << ": " << i->second << ", ";
     }
 }
 
@@ -54,8 +61,8 @@ const char* player_options =
 R"(
 [1] Attack
 [2] Heal
-[3] Player stats
-)"; //todo: main menu for start of game
+[3] Player stats)"; 
+    //todo: main menu for start of game
     //todo: add leveling system for user and monster
     //todo: add powerups with random damage and cool catchphrases.
     //todo: stat system
