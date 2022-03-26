@@ -2,32 +2,37 @@
 
 #include <iostream>
 #include <map>
-#include <random>
 #include <vector>
 #include <string>
 #include <array>
+#include <ctime>
 
 template<class T>
 void print(T out){
     std::cout << out << "\n";
 }
+
+/**
+ * Lambda declarations.
+ * */
+
 auto endline = [] { std::cout << std::endl; };
+auto decor = [] { std::cout << "==================>" << "\n"; };
 
 // map of player values
 std::map<std::string, std::string> player = {
     {"Name", ""},
     {"Health", "100"},
-    {"Attack", "16"},
-    {"Heal", "16"},
+    {"Attack", "13~24"},
+    {"Heal", "10"},
 }; // name, health, attack, heal, 
 
 // map of monster values
 std::map<std::string, std::string> monster = {
     {"Name", "Marx"},
     {"Health", "100"},
-    {"Attack", "16"},
-    {"Heal", "16"},
-}; // name, health, attack, heal,
+    {"Attack", "15~20"},
+}; // name, health, attack
 
 std::vector<std::string> monster_names = {
     "Marx",
@@ -35,41 +40,49 @@ std::vector<std::string> monster_names = {
     "Kale"
 }; // list of monster names that will be used for monsters per level.
 
+// struct to interface with player value easier
 struct Player {
     int health = stoi(player["Health"]);;
     int attack = stoi(player["Attack"]);
     int heal = stoi(player["Heal"]);
 };
-Player p; // struct to interface with player value easier
+Player p; // player struct object
 
+// struct to interface with monster value easier
 struct Monster{
     int health = stoi(monster["Health"]);;
     int attack = stoi(monster["Attack"]);
-    int heal = stoi(monster["Heal"]);
 };
-Monster m;
+Monster m; // monster struct object
 
 std::vector<uint8_t> levels;
 
+// Iterate through the player hashmap in reverse order
 void player_stats(){
-    //std::map<std::string, std::string>::reverse_iterator i;
     for(auto i = player.rbegin(); i != player.rend(); ++i){
-        std::cout << i->first << ": " << i->second << ", ";
+        std::cout << i->first << ": " << i->second << "\n";
     }
 }
 
+// Iterate through the monster hashmap in reverse order
 void monster_stats(){
     for(auto i = monster.rbegin(); i != monster.rend(); ++i){
-        std::cout << i->first << ": " << i->second << ", ";
+        std::cout << i->first << ": " << i->second << "\n";
     }
 }
 
 void player_attack(){
-
+    srand((unsigned)time(0));
+    int min = 13, max = 24;
+    m.health = m.health - rand() % (max - min + 1); //remove rand
+    monster["health"] = std::to_string(m.health);
 }
 
 void monster_attack(){
-
+    srand((unsigned)time(0));
+    int min = 15, max = 20;
+    p.health = p.health - rand() % (max - min + 1); // remove rand
+    player["health"] = std::to_string(p.health);
 }
 
 const char* player_options =

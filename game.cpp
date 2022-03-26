@@ -1,7 +1,6 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 #include <iostream>
 #include <map>
-#include <ctime>
 /**
  /// * Fmt is the C++ formatting library. For more information checkout https://github.com/fmtlib/fmt
 * */
@@ -60,12 +59,12 @@ int main(){
     while(game_is_running != false){
         std::cout << "Enter Player Name: ";
         std::cin >> player["Name"];
-        
-        endline();
+
+        decor();
         player_stats();
-        endline();
+        decor();
         monster_stats();
-        endline();
+        decor();
         bool round = true;
         while (round != false) {
 
@@ -79,6 +78,8 @@ int main(){
                 case 505: round = false; break;
             }
             monster_attack();
+            print(p.health);
+            print(m.health);
         }
         game_is_running = false;
     }
