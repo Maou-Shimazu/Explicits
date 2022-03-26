@@ -8,7 +8,7 @@
 #include <random>
 
 typedef std::mt19937 RNG; // RNG is a type that references the mersenne random number generator of c++11
-RNG rng; // generator object
+RNG rng; // generator variable
 
 template<class T>
 void print(T out){
