@@ -73,11 +73,12 @@ int main(){
             std::cout << "====> ";
             uint16_t ans; std::cin >> ans;
             switch(ans){
-                case 1: break;
+                case 1: player_attack(); break;
                 case 2: break;
                 case 3: player_stats();
                 case 505: round = false; break;
             }
+            monster_attack();
         }
         game_is_running = false;
     }

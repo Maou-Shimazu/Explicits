@@ -42,6 +42,13 @@ struct Player {
 };
 Player p; // struct to interface with player value easier
 
+struct Monster{
+    int health = stoi(monster["Health"]);;
+    int attack = stoi(monster["Attack"]);
+    int heal = stoi(monster["Heal"]);
+};
+Monster m;
+
 std::vector<uint8_t> levels;
 
 void player_stats(){
@@ -55,6 +62,14 @@ void monster_stats(){
     for(auto i = monster.rbegin(); i != monster.rend(); ++i){
         std::cout << i->first << ": " << i->second << ", ";
     }
+}
+
+void player_attack(){
+
+}
+
+void monster_attack(){
+
 }
 
 const char* player_options =
