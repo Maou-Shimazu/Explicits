@@ -31,14 +31,12 @@
 int main(){
     bool game_is_running = true; // boolean for main game loop.
     
-    srand(0);
-    uint16_t random = rand() + 1 % 10; // uint stands for unsigned int, this can also be written as `unsigned short random`.
     
     while(game_is_running != false){
         std::cout << "Enter Player Name: ";
-        std::cin >> player["Name"];
+        std::cin >> player["Name"]; // storing playe's name inside the map
 
-        decor();
+        decor(); // refers to the decoration lambda at the top of explicits
         player_stats();
         decor();
         monster_stats();
@@ -48,12 +46,23 @@ int main(){
 
             print(player_options);
             std::cout << "====> ";
-            uint16_t ans; std::cin >> ans;
+            uint16_t ans; std::cin >> ans; // uint stands for unsigned int, this can also be written as `unsigned short random`.
             switch(ans){
-                case 1: player_attack(); monster_attack(); break;
-                case 2: player_heal(); monster_attack(); break;
-                case 3: player_stats(0); break;
-                case 505: round = false; break;
+                case 1: player_attack();
+                if(m.health == 0){
+                    std::cout << 
+                }
+                monster_attack();
+                break;
+
+                case 2: player_heal(); monster_attack(); 
+                break;
+
+                case 3: player_stats(0); 
+                break;
+
+                case 505: round = false; 
+                break;
             }
             
             print(p.health);

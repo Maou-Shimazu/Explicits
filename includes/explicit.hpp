@@ -10,6 +10,7 @@
 typedef std::mt19937 RNG; // RNG is a type that references the mersenne random number generator of c++11
 RNG rng; // generator variable
 typedef std::uniform_int_distribution<uint32_t> Range; // Uniform int distribution type definition.
+typedef std::default_random_engine drg;
 
 template<class T>
 void print(T out){
@@ -44,6 +45,14 @@ std::vector<std::string> monster_names = {
     "Kale"
 }; // list of monster names that will be used for monsters per level.
 
+
+std::string monster_death_message[] = {
+    "The monster was eradicated by the galliant hero.",
+    "A strong attack and a fatal blow!",
+    ""
+};
+
+
 // struct to interface with player value easier
 struct Player {
     int health = stoi(player["Health"]);
@@ -54,6 +63,8 @@ Player p; // player struct object
 
 // struct to interface with monster value easier
 struct Monster{
+    drg r;
+    std::string monster_name = monster_names[r];
     int health = stoi(monster["Health"]);
     int attack = stoi(monster["Attack"]);
 };
