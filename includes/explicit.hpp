@@ -45,7 +45,7 @@ std::vector<std::string> monster_names = {
 
 // struct to interface with player value easier
 struct Player {
-    int health = stoi(player["Health"]);;
+    int health = stoi(player["Health"]);
     int attack = stoi(player["Attack"]);
     int heal = stoi(player["Heal"]);
 };
@@ -53,7 +53,7 @@ Player p; // player struct object
 
 // struct to interface with monster value easier
 struct Monster{
-    int health = stoi(monster["Health"]);;
+    int health = stoi(monster["Health"]);
     int attack = stoi(monster["Attack"]);
 };
 Monster m; // monster struct object
