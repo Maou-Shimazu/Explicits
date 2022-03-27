@@ -30,7 +30,7 @@
 
 int main(){
     bool game_is_running = true; // boolean for main game loop.
-
+    
     srand(0);
     uint16_t random = rand() + 1 % 10; // uint stands for unsigned int, this can also be written as `unsigned short random`.
     
@@ -52,7 +52,7 @@ int main(){
             switch(ans){
                 case 1: player_attack(); monster_attack(); break;
                 case 2: player_heal(); monster_attack(); break;
-                case 3: player_stats(); break;
+                case 3: player_stats(0); break;
                 case 505: round = false; break;
             }
             

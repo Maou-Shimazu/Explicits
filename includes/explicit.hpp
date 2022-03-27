@@ -68,6 +68,12 @@ void player_stats(){
     }
 }
 
+void player_stats(int game){
+    for(auto i = player.rbegin(); i != player.rend(); ++i){
+        std::cout << i->first << ": " << i->second << ", ";
+    }
+}
+
 // Iterate through the monster hashmap in reverse order
 void monster_stats(){
     for(auto i = monster.rbegin(); i != monster.rend(); ++i){
