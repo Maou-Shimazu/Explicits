@@ -9,6 +9,7 @@
 
 typedef std::mt19937 RNG; // RNG is a type that references the mersenne random number generator of c++11
 RNG rng; // generator variable
+typedef std::uniform_int_distribution<uint32_t> Range; // Uniform int distribution type definition.
 
 template<class T>
 void print(T out){
@@ -75,7 +76,7 @@ void monster_stats(){
 }
 
 void player_attack(){
-    std::uniform_int_distribution<uint32_t> range(16,20);
+    Range range(16,20);
     m.health = m.health - range(rng); //remove rand
     monster["health"] = std::to_string(m.health);
 }
@@ -84,6 +85,10 @@ void monster_attack(){
     p.health = p.health - 18; // remove rand
     player["health"] = std::to_string(p.health);
 }
+
+auto player_heal = [] () {
+
+};
 
 const char* player_options =
 R"(

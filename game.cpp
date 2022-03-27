@@ -50,12 +50,12 @@ int main(){
             std::cout << "====> ";
             uint16_t ans; std::cin >> ans;
             switch(ans){
-                case 1: player_attack(); break;
-                case 2: break;
-                case 3: player_stats();
+                case 1: player_attack(); monster_attack(); break;
+                case 2: player_heal(); monster_attack(); break;
+                case 3: player_stats(); break;
                 case 505: round = false; break;
             }
-            monster_attack();
+            
             print(p.health);
             print(m.health);
         }
