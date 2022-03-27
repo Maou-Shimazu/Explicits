@@ -67,5 +67,3 @@ int main(){
 // i am so lost... -huei
 //bing bong gonna fuck your life up 
 //lol
-
-//ends as you input 3 - Player stats sussy baka 

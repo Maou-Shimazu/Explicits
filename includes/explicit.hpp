@@ -28,7 +28,7 @@ std::map<std::string, std::string> player = {
     {"Name", ""},
     {"Health", "100"},
     {"Attack", "16~20"},
-    {"Heal", "10"},
+    {"Heal", "16~20"},
 }; // name, health, attack, heal, 
 
 // map of monster values
@@ -68,6 +68,7 @@ void player_stats(){
     }
 }
 
+// Player stats overload for different output look.
 void player_stats(int game){
     for(auto i = player.rbegin(); i != player.rend(); ++i){
         std::cout << i->first << ": " << i->second << ", ";
@@ -80,28 +81,31 @@ void monster_stats(){
         std::cout << i->first << ": " << i->second << "\n";
     }
 }
-
+// Player attack function
 void player_attack(){
-    Range range(16,20);
-    m.health = m.health - range(rng); //remove rand
+    Range monster_attack_range(16,20);
+    m.health = m.health - monster_attack_range(rng);
     monster["health"] = std::to_string(m.health);
 }
 
+// Monster attack function
 void monster_attack(){
-    p.health = p.health - 18; // remove rand
+    p.health = p.health - 18;
     player["health"] = std::to_string(p.health);
 }
 
-auto player_heal = [] () {
-
+// Player heal lambda
+auto player_heal = [&] { 
+    Range player_heal_range(16, 20); 
+    p.health += player_heal_range(rng); 
 };
 
+// Main options menu
 const char* player_options =
 R"(
 [1] Attack
 [2] Heal
-[3] Player stats)"; 
-    //todo: main menu for start of game
+[3] Player stats)";
     //todo: add leveling system for user and monster
     //todo: add powerups with random damage and cool catchphrases.
     //todo: stat system
