@@ -36,7 +36,11 @@ int main(){
         std::cout << "Enter Player Name: ";
         std::cin >> player["Name"]; // storing playe's name inside the map
 
-        decor(); // refers to the decoration lambda at the top of explicits
+        srand(time(NULL)); // random seed
+        uint16_t m_i = rand() % monster_names.size(); // random monster index 
+        monster["Name"] = monster_names[m_i]; // assigning the monster a random name.
+
+        decor();
         player_stats();
         decor();
         monster_stats();
@@ -48,11 +52,18 @@ int main(){
             std::cout << "====> ";
             uint16_t ans; std::cin >> ans; // uint stands for unsigned int, this can also be written as `unsigned short random`.
             switch(ans){
-                case 1: player_attack();
-                if(m.health == 0){
-                    std::cout << 
-                }
+                case 1:
+                player_attack();
                 monster_attack();
+                
+                if(m.health <= 0){
+                    std::cout << "You killed the monster!\n";
+                    round = false;
+                }
+                else if(p.health <= 0){
+                    std::cout << "You died!\n";
+                    round = false;
+                }
                 break;
 
                 case 2: player_heal(); monster_attack(); 

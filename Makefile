@@ -1,3 +1,3 @@
 all:
-	g++ -o game game.cpp
+	g++ -std=c++20 -o game game.cpp
 	./game

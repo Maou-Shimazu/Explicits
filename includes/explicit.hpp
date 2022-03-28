@@ -6,6 +6,7 @@
 #include <string>
 #include <array>
 #include <random>
+#include <algorithm>
 
 typedef std::mt19937 RNG; // RNG is a type that references the mersenne random number generator of c++11
 RNG rng; // generator variable
@@ -22,6 +23,7 @@ void print(T out){
  * */
 
 auto endline = [] { std::cout << std::endl; };
+// the decoration lambda
 auto decor = [] { std::cout << "==================>" << "\n"; };
 
 // map of player values
@@ -34,7 +36,7 @@ std::map<std::string, std::string> player = {
 
 // map of monster values
 std::map<std::string, std::string> monster = {
-    {"Name", "Marx"},
+    {"Name", ""},
     {"Health", "100"},
     {"Attack", "18"},
 }; // name, health, attack
@@ -49,7 +51,7 @@ std::vector<std::string> monster_names = {
 std::string monster_death_message[] = {
     "The monster was eradicated by the galliant hero.",
     "A strong attack and a fatal blow!",
-    ""
+    "Your special attack "
 };
 
 
@@ -62,9 +64,8 @@ struct Player {
 Player p; // player struct object
 
 // struct to interface with monster value easier
-struct Monster{
-    drg r;
-    std::string monster_name = monster_names[r];
+
+struct Monster{    
     int health = stoi(monster["Health"]);
     int attack = stoi(monster["Attack"]);
 };
@@ -106,7 +107,7 @@ void monster_attack(){
 }
 
 // Player heal lambda
-auto player_heal = [&] { 
+auto player_heal = [] { 
     Range player_heal_range(16, 20); 
     p.health += player_heal_range(rng); 
 };
