@@ -28,6 +28,7 @@
  *  auto variable_name = [&, n] (int new_variable) { do stuff with n and new_variable }  
  */
 
+
 int main(){
     bool game_is_running = true; // boolean for main game loop.
     
@@ -36,9 +37,7 @@ int main(){
         std::cout << "Enter Player Name: ";
         std::cin >> player["Name"]; // storing playe's name inside the map
 
-        srand(time(NULL)); // random seed
-        uint16_t m_i = rand() % monster_names.size(); // random monster index 
-        monster["Monster"] = monster_names[m_i]; // assigning the monster a random name.
+        monster["Monster"] = monster_names[random_gen(monster_names.size())]; // assigning the monster a random name.
 
         decor();
         player_stats();
@@ -48,7 +47,7 @@ int main(){
         bool round = true;
         while (round != false) {
 
-            print(player_options);
+            std::cout << player_options << std::endl;
             std::cout << "====> ";
             uint16_t ans; std::cin >> ans; // uint stands for unsigned int, this can also be written as `unsigned short random`.
             switch(ans){
@@ -56,8 +55,7 @@ int main(){
                 player_attack();
                 monster_attack();
                 if(m.health <= 0){
-                    Range m_d_i(1,3);
-                    std::cout << monster_death_message[m_d_i(rng)] <<std::endl;
+                    std::cout << monster_death_message[random_gen(monster_death_message.size())] <<std::endl;
                     round = false;
                 }
                 else if(p.health <= 0){
@@ -76,8 +74,8 @@ int main(){
                 break;
             }
             
-            std::cout << "\nPlayer Health: " << p.health << "\n";
-            std::cout << "Monster Health: " << m.health << "\n";
+            std::cout << "\n" << player["Name"] << " Health: " << p.health << "\n";
+            std::cout << monster["Monster"] << " Health: " << m.health << "\n";
         }
         game_is_running = false;
     }

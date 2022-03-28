@@ -12,12 +12,6 @@
 typedef std::mt19937 RNG; // RNG is a type that references the mersenne random number generator of c++11
 RNG rng; // generator variable
 typedef std::uniform_int_distribution<uint32_t> Range; // Uniform int distribution type definition.
-typedef std::default_random_engine drg;
-
-template<class T>
-void print(T out){
-    std::cout << out << "\n";
-}
 
 /**
  * Lambda declarations.
@@ -26,6 +20,18 @@ void print(T out){
 auto endline = [] { std::cout << std::endl; };
 // the decoration lambda
 auto decor = [] { std::cout << "==================>" << "\n"; };
+// C++11 random number genertor;
+auto cpp_gen = [] (int min, int max) {
+    Range range(min, max);
+    return range(rng);
+};
+
+// Random Number generator with srand&&rand;
+int random_gen (int size) {
+    srand(time(NULL));
+    return rand() % size;
+};
+
 
 // map of player values
 std::map<std::string, std::string> player = {
@@ -33,6 +39,7 @@ std::map<std::string, std::string> player = {
     {"Health", "100"},
     {"Attack", "16~20"},
     {"Heal", "16~20"},
+    {"Powers", "None"},
 }; // name, health, attack, heal, 
 
 // map of monster values
@@ -40,6 +47,7 @@ std::map<std::string, std::string> monster = {
     {"Monster", ""},
     {"Health", "100"},
     {"Attack", "18"},
+    {"Powers", "None"},
 }; // name, health, attack
 
 std::vector<std::string> monster_names = {
@@ -52,7 +60,7 @@ std::vector<std::string> monster_names = {
 std::vector<std::string> monster_death_message = {
     "The monster was eradicated by the galliant hero.",
     "A strong attack and a fatal blow, The monster is dead!",
-    "Your special attack "
+    "Your special attack has abolished the vile villain!"
 };
 
 
@@ -90,14 +98,16 @@ const void player_stats(int game){
 
 // Iterate through the monster hashmap in reverse order
 const void monster_stats(){
+    // std::map<std::string, std::string>::iterator i;
     for(auto i = monster.rbegin(); i != monster.rend(); ++i){
         std::cout << i->first << ": " << i->second << "\n";
     }
 }
 // Player attack function
 void player_attack(){
-    Range monster_attack_range(16,20);
-    m.health = m.health - monster_attack_range(rng);
+    //Range monster_attack_range(16,20);
+    //m.health = m.health - monster_attack_range(rng);
+    m.health = m.health - cpp_gen(16,20);
     monster["health"] = std::to_string(m.health);
 }
 
@@ -107,10 +117,11 @@ void monster_attack(){
     player["health"] = std::to_string(p.health);
 }
 
-// Player heal lambda
-auto player_heal = [] { 
+// Player heal function
+void player_heal() { 
     Range player_heal_range(16, 20); 
-    p.health += player_heal_range(rng); 
+    p.health += player_heal_range(rng);
+    player["health"] = std::to_string(p.health);
 };
 
 // Main options menu
@@ -118,7 +129,8 @@ const char* player_options =
 R"(
 [1] Attack
 [2] Heal
-[3] Player stats)";
+[3] Player stats
+[4] Power Up)";
     //todo: add leveling system for user and monster
     //todo: add powerups with random damage and cool catchphrases.
     //todo: stat system
