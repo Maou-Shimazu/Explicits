@@ -38,7 +38,7 @@ int main(){
 
         srand(time(NULL)); // random seed
         uint16_t m_i = rand() % monster_names.size(); // random monster index 
-        monster["Name"] = monster_names[m_i]; // assigning the monster a random name.
+        monster["Monster"] = monster_names[m_i]; // assigning the monster a random name.
 
         decor();
         player_stats();
@@ -55,9 +55,9 @@ int main(){
                 case 1:
                 player_attack();
                 monster_attack();
-                
                 if(m.health <= 0){
-                    std::cout << "You killed the monster!\n";
+                    Range m_d_i(1,3);
+                    std::cout << monster_death_message[m_d_i(rng)] <<std::endl;
                     round = false;
                 }
                 else if(p.health <= 0){
@@ -76,8 +76,8 @@ int main(){
                 break;
             }
             
-            print(p.health);
-            print(m.health);
+            std::cout << "\nPlayer Health: " << p.health << "\n";
+            std::cout << "Monster Health: " << m.health << "\n";
         }
         game_is_running = false;
     }

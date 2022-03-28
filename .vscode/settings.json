@@ -64,6 +64,11 @@
         "typeinfo": "cpp",
         "iomanip": "cpp",
         "optional": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "any": "cpp",
+        "bitset": "cpp",
+        "complex": "cpp",
+        "typeindex": "cpp",
+        "variant": "cpp"
     }
 }

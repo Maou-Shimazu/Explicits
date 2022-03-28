@@ -7,6 +7,7 @@
 #include <array>
 #include <random>
 #include <algorithm>
+#include <tuple>
 
 typedef std::mt19937 RNG; // RNG is a type that references the mersenne random number generator of c++11
 RNG rng; // generator variable
@@ -36,7 +37,7 @@ std::map<std::string, std::string> player = {
 
 // map of monster values
 std::map<std::string, std::string> monster = {
-    {"Name", ""},
+    {"Monster", ""},
     {"Health", "100"},
     {"Attack", "18"},
 }; // name, health, attack
@@ -48,9 +49,9 @@ std::vector<std::string> monster_names = {
 }; // list of monster names that will be used for monsters per level.
 
 
-std::string monster_death_message[] = {
+std::vector<std::string> monster_death_message = {
     "The monster was eradicated by the galliant hero.",
-    "A strong attack and a fatal blow!",
+    "A strong attack and a fatal blow, The monster is dead!",
     "Your special attack "
 };
 
@@ -74,21 +75,21 @@ Monster m; // monster struct object
 std::vector<uint8_t> levels;
 
 // Iterate through the player hashmap in reverse order
-void player_stats(){
+const void player_stats() {
     for(auto i = player.rbegin(); i != player.rend(); ++i){
         std::cout << i->first << ": " << i->second << "\n";
     }
 }
 
 // Player stats overload for different output look.
-void player_stats(int game){
+const void player_stats(int game){
     for(auto i = player.rbegin(); i != player.rend(); ++i){
         std::cout << i->first << ": " << i->second << ", ";
     }
 }
 
 // Iterate through the monster hashmap in reverse order
-void monster_stats(){
+const void monster_stats(){
     for(auto i = monster.rbegin(); i != monster.rend(); ++i){
         std::cout << i->first << ": " << i->second << "\n";
     }
