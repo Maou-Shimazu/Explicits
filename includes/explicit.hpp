@@ -9,10 +9,9 @@
 #include <algorithm>
 #include <tuple>
 
-typedef std::mt19937 RNG; // RNG is a type that references the mersenne random number generator of c++11
-RNG rng; // generator variable
 std::random_device rd; // random device variable
-typedef std::uniform_int_distribution<uint32_t> Range; // Uniform int distribution type definition.
+std::mt19937 mt{rd()}; // random number generator
+typedef std::uniform_int_distribution<> Range; // Uniform int distribution type definition.
 
 /**
  * Lambda declarations.
@@ -21,13 +20,16 @@ typedef std::uniform_int_distribution<uint32_t> Range; // Uniform int distributi
 auto endline = [] { std::cout << std::endl; };
 // the decoration lambda
 auto decor = [] { std::cout << "==================>" << "\n"; };
+
 // C++11 random number genertor;
-auto cpp_gen = [] (int min, int max) {
+uint32_t cpp_gen (int min, int max) {
     Range range(min, max);
     return range(rd);
 };
 
-// Random Number generator with srand&&rand;
+/** Random Number generator with srand&&rand;
+ * Do not use unless there is an error with cpp_gen();
+ * */
 int random_gen (int size) {
     srand(time(NULL));
     return rand() % size;
@@ -36,20 +38,20 @@ int random_gen (int size) {
 
 // map of player values
 std::map<std::string, std::string> player = {
-    {"Powers", "None"},
     {"Name", ""},
     {"Health", "100"},
     {"Attack", "16~20"},
-    {"Heal", "16~20"},  
-}; // name, health, attack, heal, 
+    {"Heal", "16~20"},
+    {"Powers", "None"},
+}; // name, health, attack, heal, powers
 
 // map of monster values
 std::map<std::string, std::string> monster = {
-    {"Powers", "None"},
     {"Monster", ""},
     {"Health", "100"},
     {"Attack", "18"},
-}; // name, health, attack
+    {"Powers", "None"},
+}; // name, health, attack, powers
 
 std::vector<std::string> monster_names = {
     "Marx",
