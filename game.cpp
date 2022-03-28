@@ -20,6 +20,9 @@
    for(it = player.begin(); it != player.end(); ++it){
        std::cout << it->first << ": " << it->second << ", ";
    }
+ *  Range monster_attack_range(16,20);
+ *  m.health = m.health - monster_attack_range(rng);
+ * 
  * * Lambda is either:
     auto variable = [] (new variable) { //body }
  *  auto variable = [new variable] { //body }
@@ -37,7 +40,7 @@ int main(){
         std::cout << "Enter Player Name: ";
         std::cin >> player["Name"]; // storing playe's name inside the map
 
-        monster["Monster"] = monster_names[random_gen(monster_names.size())]; // assigning the monster a random name.
+        monster["Monster"] = monster_names[cpp_gen(0, monster_names.size())]; // assigning the monster a random name.
 
         decor();
         player_stats();

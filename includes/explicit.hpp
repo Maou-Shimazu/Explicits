@@ -11,6 +11,7 @@
 
 typedef std::mt19937 RNG; // RNG is a type that references the mersenne random number generator of c++11
 RNG rng; // generator variable
+std::random_device rd; // random device variable
 typedef std::uniform_int_distribution<uint32_t> Range; // Uniform int distribution type definition.
 
 /**
@@ -23,7 +24,7 @@ auto decor = [] { std::cout << "==================>" << "\n"; };
 // C++11 random number genertor;
 auto cpp_gen = [] (int min, int max) {
     Range range(min, max);
-    return range(rng);
+    return range(rd);
 };
 
 // Random Number generator with srand&&rand;
@@ -35,19 +36,19 @@ int random_gen (int size) {
 
 // map of player values
 std::map<std::string, std::string> player = {
+    {"Powers", "None"},
     {"Name", ""},
     {"Health", "100"},
     {"Attack", "16~20"},
-    {"Heal", "16~20"},
-    {"Powers", "None"},
+    {"Heal", "16~20"},  
 }; // name, health, attack, heal, 
 
 // map of monster values
 std::map<std::string, std::string> monster = {
+    {"Powers", "None"},
     {"Monster", ""},
     {"Health", "100"},
     {"Attack", "18"},
-    {"Powers", "None"},
 }; // name, health, attack
 
 std::vector<std::string> monster_names = {
@@ -105,8 +106,6 @@ const void monster_stats(){
 }
 // Player attack function
 void player_attack(){
-    //Range monster_attack_range(16,20);
-    //m.health = m.health - monster_attack_range(rng);
     m.health = m.health - cpp_gen(16,20);
     monster["health"] = std::to_string(m.health);
 }
@@ -119,8 +118,7 @@ void monster_attack(){
 
 // Player heal function
 void player_heal() { 
-    Range player_heal_range(16, 20); 
-    p.health += player_heal_range(rng);
+    p.health += cpp_gen(16, 20);
     player["health"] = std::to_string(p.health);
 };
 
