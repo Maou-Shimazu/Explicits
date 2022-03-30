@@ -58,7 +58,7 @@ int main(){
                 player_attack();
                 monster_attack();
                 if(m.health <= 0){
-                    std::cout << monster_death_message[cpp_gen(0, monster_death_message.size())] <<std::endl;
+                    std::cout << monster_death_message[random_gen(monster_death_message.size())] <<std::endl;
                     round = false;
                 }
                 else if(p.health <= 0){
