@@ -9,6 +9,8 @@
 #include <algorithm>
 #include <tuple>
 #include <ctime>
+#include "random.hpp"
+using Random = effolkronium::random_static; // available for those who dont want to use cpp_gen(); documentation examples are listed here: https://github.com/effolkronium/random#five-minute-tutorial
 
 std::random_device rd; // random device variable
 std::mt19937 mt{rd()}; // random number generator
