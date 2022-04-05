@@ -38,14 +38,14 @@ int main(){
     
     while(game_is_running != false){
         std::cout << "Enter Player Name: ";
-        std::cin >> player["Name"]; // storing playe's name inside the map
+        std::cin >> p.name; // storing playe's name inside the map
 
-        monster["Monster"] = monster_names[random_gen(monster_names.size())]; // assigning the monster a random name.
+        m.name = monster_names[random_gen(monster_names.size())]; // assigning the monster a random name.
 
         decor();
-        player_stats();
+        player_stats(",\n");
         decor();
-        monster_stats();
+        monster_stats(",\n");
         decor();
         bool round = true;
         while (round != false) {
@@ -70,15 +70,15 @@ int main(){
                 case 2: player_heal(); monster_attack(); 
                 break;
 
-                case 3: player_stats(0); 
+                case 3: player_stats(); 
                 break;
 
                 case 505: round = false; 
                 break;
             }
             
-            std::cout << "\n" << player["Name"] << " Health: " << p.health << "\n";
-            std::cout << monster["Monster"] << " Health: " << m.health << "\n";
+            std::cout << "\n" << p.name << " Health: " << p.health << "\n";
+            std::cout << m.name << " Health: " << m.health << "\n";
         }
         game_is_running = false;
     }

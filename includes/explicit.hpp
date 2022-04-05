@@ -9,8 +9,18 @@
 #include <algorithm>
 #include <tuple>
 #include <ctime>
-#include "random.hpp"
-using Random = effolkronium::random_static; // available for those who dont want to use cpp_gen(); documentation examples are listed here: https://github.com/effolkronium/random#five-minute-tutorial
+#include <stdio.h>
+// #include "random.hpp"
+// using Random = effolkronium::random_static; // available for those who dont want to use cpp_gen(); documentation examples are listed here: https://github.com/effolkronium/random#five-minute-tutorial
+// todo: add random.hpp to repo
+
+/**
+ * ---
+ * Info: The general idea.
+ * Store player/monster frequently updated configurations in either structs or classes.
+ * Store other information like powers and landscape with values that are only changed after certain events.
+ * ---
+ */
 
 std::random_device rd; // random device variable
 std::mt19937 mt{rd()}; // random number generator
@@ -22,7 +32,7 @@ typedef std::uniform_int_distribution<> Range; // Uniform int distribution type 
 
 auto endline = [] { std::cout << std::endl; };
 // the decoration lambda
-auto decor = [] { std::cout << "==================>" << "\n"; };
+auto decor = [] { std::cout << "=================>" << "\n"; };
 
 // C++11 random number genertor;
 uint32_t cpp_gen (int min, int max) {
@@ -30,31 +40,16 @@ uint32_t cpp_gen (int min, int max) {
     return range(rd);
 };
 
-/** Random Number generator with srand&&rand;
- * Do not use unless there is an error with cpp_gen();
- * */
+// C random number generator
 int random_gen (int size) {
     srand(time(NULL));
     return rand() % size;
 };
 
-
-// map of player values
-std::map<std::string, std::string> player = {
-    {"Name", ""},
-    {"Health", "100"},
-    {"Attack", "16~20"},
-    {"Heal", "16~20"},
-    {"Powers", "None"},
-}; // name, health, attack, heal, powers
-
-// map of monster values
-std::map<std::string, std::string> monster = {
-    {"Monster", ""},
-    {"Health", "100"},
-    {"Attack", "18"},
-    {"Powers", "None"},
-}; // name, health, attack, powers
+std::map<std::string, uint16_t> player_powers = {
+    {"Freeze", 6},
+    {"Lava", 8},
+};
 
 std::vector<std::string> monster_names = {
     "Marx",
@@ -62,70 +57,62 @@ std::vector<std::string> monster_names = {
     "Kale"
 }; // list of monster names that will be used for monsters per level.
 
-
 std::vector<std::string> monster_death_message = {
     "The monster was eradicated by the galliant hero.",
     "A strong attack and a fatal blow, The monster is dead!",
     "Your special attack has abolished the vile villain!"
 };
 
-
-// struct to interface with player value easier
+// Player config
 struct Player {
-    int health = stoi(player["Health"]);
-    int attack = stoi(player["Attack"]);
-    int heal = stoi(player["Heal"]);
+    std::string name;
+    int health = 100;
+    int attack;
+    int heal;
 };
 Player p; // player struct object
 
-// struct to interface with monster value easier
-
-struct Monster{    
-    int health = stoi(monster["Health"]);
-    int attack = stoi(monster["Attack"]);
+// Monster config
+struct Monster{
+    std::string name;
+    int health = 100;
+    int attack = 18;
 };
 Monster m; // monster struct object
 
 std::vector<uint8_t> levels;
 
-// Iterate through the player hashmap in reverse order
-const void player_stats() {
-    for(auto i = player.rbegin(); i != player.rend(); ++i){
-        std::cout << i->first << ": " << i->second << "\n";
-    }
-}
-
-// Player stats overload for different output look.
-const void player_stats(int game){
-    for(auto i = player.rbegin(); i != player.rend(); ++i){
-        std::cout << i->first << ": " << i->second << ", ";
-    }
-}
-
-// Iterate through the monster hashmap in reverse order
-const void monster_stats(){
-    // std::map<std::string, std::string>::iterator i;
-    for(auto i = monster.rbegin(); i != monster.rend(); ++i){
-        std::cout << i->first << ": " << i->second << "\n";
-    }
-}
 // Player attack function
-void player_attack(){
-    m.health = m.health - cpp_gen(16,20);
-    monster["health"] = std::to_string(m.health);
-}
+void player_attack(){ m.health -= cpp_gen(16,20); }
 
 // Monster attack function
-void monster_attack(){
-    p.health = p.health - 18;
-    player["health"] = std::to_string(p.health);
-}
+void monster_attack(){ p.health -= 18; }
 
 // Player heal function
-void player_heal() { 
-    p.health += cpp_gen(16, 20);
-    player["health"] = std::to_string(p.health);
-};
+void player_heal() { p.health += cpp_gen(16, 20); };
+
+// Iterate through player power's
+void ppowers(){ for (auto i : player_powers)  std::cout << i.first + ", "; }
+
+// Player stats function
+void player_stats(std::string n = "") { 
+    std::cout << "Name: " << p.name << n
+    << "Health: " << p.health << n
+    << "Attack: " << p.attack << n
+    << "Heal: " << p.heal << n
+    << "Powers: "; ppowers();
+    std::cout 
+    << "\nMap: "
+    << "\n";
+}
+
+// Monster stats function
+void monster_stats(std::string n = "") { 
+    std::cout << "Name: " << m.name << n
+    << "Health: "<< m.health << n 
+    << "Attack: "<< m.attack
+    << "\n";
+}
 
 // Main options menu
 const char* player_options =
@@ -134,6 +121,7 @@ R"(
 [2] Heal
 [3] Player stats
 [4] Power Up)";
+    ///---
     //todo: add leveling system for user and monster
     //todo: add powerups with random damage and cool catchphrases.
-    //todo: stat system
+    //todo: stat system ✅️
