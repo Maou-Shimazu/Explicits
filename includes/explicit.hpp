@@ -10,6 +10,7 @@
 #include <tuple>
 #include <ctime>
 #include <stdio.h>
+#include "drawille.hpp"
 // #include "random.hpp"
 // using Random = effolkronium::random_static; // available for those who dont want to use cpp_gen(); documentation examples are listed here: https://github.com/effolkronium/random#five-minute-tutorial
 // todo: add random.hpp to repo
