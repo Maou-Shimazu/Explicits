@@ -47,6 +47,7 @@ int main(){
         decor();
         monster_stats(",\n");
         decor();
+        line();
         bool round = true;
         while (round != false) {
 
