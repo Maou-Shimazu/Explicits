@@ -1,3 +1,3 @@
 all:
-	g++ -std=c++2a -o game game.cpp
-	./game
+	g++ -std=c++2a -o Explicits main.cpp
+	./Explicits
