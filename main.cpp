@@ -66,8 +66,10 @@ int main(){
         counter++;
         game_is_running = false;
     }
-    fflush(stdin);
-    getchar();
+    // fflush(stdin);
+    // getchar();
+    std::cin.get();
+    std::cin.get();
     return 0;
 }
 // i am so lost... -huei

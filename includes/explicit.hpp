@@ -42,7 +42,7 @@ void progress_bar(int time = 100, char symbol = '='){
     std::cout << std::setw(81) << "]";
     for (double percentage = 0; percentage <= 100; percentage += progress_level){
         progress_bar.insert(0, 1, symbol);
-        std::cout << std::setw(3) << "\r[" << std::ceil(percentage) << '%' << "] " << "[" << progress_bar;
+        std::cout << "\r[" << std::ceil(percentage) << '%' << "] " << "[" << progress_bar;
         std::this_thread::sleep_for(std::chrono::milliseconds(time));       
     }
     std::cout << "\n";
