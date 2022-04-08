@@ -6,8 +6,9 @@
 
 int main(){
 	load_menu();
+    std::cout << "\nLoading game configurations: " << std::endl;
     progress_bar(10);
-	std::cout << "Press Enter to Play." << std::endl;
+	std::cout << "\nPress Enter to Play ";
 	std::cin.ignore();
 	
     bool game_is_running = true; // boolean for main game loop.
@@ -56,19 +57,8 @@ int main(){
                 case 505: round = false; 
                 break;
 
-                case 4:
-                //note: instead of trying to add to current attack power, subtract from current monster health
-                    std::map<std::string, uint16_t> pp = player.get_powers(); // player powers
-                    std::vector<std::string> pn = player.get_power_names(); // player power names 
-                    size_t pa = player.get_attack(); // player attack
-                    std::cout << "Powering up!" << std::endl;
-                    std::string p = pn[random_gen(pn.size())]; // power
-                    pa += pp[p]; // add player attack to value of power up
-                    player.set_attack(pa);
-                    std::cout << "You activated: " << p << "! Your attack is now: " << player.get_attack() <<"\n";
-
+                case 4: player.power_up();
                 break;
-                
             }
             std::cout << "\n" << player.get_name() << " Health: " << player.get_health() << "\n";
             std::cout << monster.get_name() << " Health: " << monster.get_health() << "\n";
@@ -76,7 +66,8 @@ int main(){
         counter++;
         game_is_running = false;
     }
-    getch();
+    fflush(stdin);
+    getchar();
     return 0;
 }
 // i am so lost... -huei
