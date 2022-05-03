@@ -1,7 +1,7 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 #include "includes/explicit.hpp"
 /**
- /// * Explicit is where all definitions should go, impliment everything in the header file like a distingushed individual.
+ * * Explicit is where all definitions should go, impliment everything in the header file like a distingushed individual.
 **/
 
 int main(){
@@ -12,7 +12,6 @@ int main(){
 	std::cin.ignore();
 	
     bool game_is_running = true; // boolean for main game loop.
-    
     
     while(game_is_running != false){
         std::cout << "Enter Player Name: ";
@@ -66,11 +65,7 @@ int main(){
         counter++;
         game_is_running = false;
     }
-    // fflush(stdin);
-    // getchar();
     std::cin.get();
     std::cin.get();
     return 0;
 }
-// i am so lost... -huei
-//lol

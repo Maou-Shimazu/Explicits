@@ -89,6 +89,7 @@
         "forward_list": "cpp",
         "xlocbuf": "cpp",
         "xlocmon": "cpp",
-        "xloctime": "cpp"
+        "xloctime": "cpp",
+        "*.def": "cpp"
     },
 }
