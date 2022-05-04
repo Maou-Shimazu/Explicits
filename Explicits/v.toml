@@ -1,0 +1,8 @@
+
+[variables]
+compiler = 'v'
+filename = 'main.v'
+
+[scripts]
+run = 'v main.v'
+	
