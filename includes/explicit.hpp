@@ -154,7 +154,7 @@ class Monster : public Player {
 };
 Monster monster;
 
-//--- Prototype Definitions
+
 void Player::attack() {
   monster.set_health(monster.get_health() - attack_value);
 }
@@ -170,7 +170,6 @@ void Monster::attack() {
   player.set_health(player.get_health() - attack_value);
 }
 
-//--- TUI OPS
 const char* player_options =
     R"(
 [1] Attack
@@ -184,34 +183,3 @@ const char* player_options =
 // warning: player's and monsters only die in option 1 of the switch, impliment
 // a global check. 🛑 
 // todo: stat system ✅️
-
-void load_menu() {
-  system("cls");
-  tui::Window window;
-  window.set_title("Explicits");
-
-  bool quit = false;
-  tui::Event event;
-
-  tui::Paragraph p1;
-  p1.text = "Explicits";
-  p1.set_dimensions(0, 0, 25, 8);
-  p1.border = true;
-
-  window.add(p1);
-
-  while (!quit) {
-    if (window.poll_event(event)) {
-      if (event.type == tui::KEYDOWN) {
-        switch (event.key) {
-          case 'q':
-            quit = true;
-            break;
-        }
-      }
-    }
-    window.render();
-  }
-  window.close();
-  system("cls");
-};
