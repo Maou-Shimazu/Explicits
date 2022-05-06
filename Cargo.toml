@@ -6,4 +6,5 @@ edition = "2021"
 [dependencies]
 tui = "0.18.0"
 rand = "0.8.4"
-crossterm="*"
+crossterm="0.23.2"
+configparser = "3.0.0"

@@ -1,6 +1,7 @@
 mod explicits;
 use explicits::{
     Player,
+    Monster,
 };
 // use crossterm::{
 //     event::{self, DisableMouseCapture, EnableMouseCapture, Event, KeyCode},
@@ -84,13 +85,29 @@ use explicits::{
 //     let block = Block::default().title("Explicits").title_alignment(Alignment::Center).borders(Borders::ALL);
 //     f.render_widget(block, bottom_chunks[0]);
 // }
-use std::io::stdin;
+use std::io::{stdout, stdin, Write};
 fn main(){
     let mut player = Player::default();
     player.power_iter();
+    println!();
     println!("Default Heath: {}", player.health);
     player.heal();
     println!("New Heath: {}", player.health);
+    println!();
+    print!("Enter player name: ");
+    
+    stdout().flush().ok();
     stdin().read_line(&mut player.name).ok();
+    println!();
     player.stats();
+
+    println!();
+    let mut monster = Monster::default();
+    player.attack(&mut monster);
+    monster.stats();
+    println!();
+
+    monster.attack(&mut player);
+    player.stats();
+
 }
