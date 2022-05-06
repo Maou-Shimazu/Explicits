@@ -110,4 +110,6 @@ fn main(){
     monster.attack(&mut player);
     player.stats();
 
+    player.write_config();
+
 }

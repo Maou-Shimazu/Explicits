@@ -1,4 +1,6 @@
 use rand::{prelude::SliceRandom, Rng};
+use configparser::ini::Ini;
+use std::collections::HashMap;
 
 pub fn _randd() {
     let mut rng = rand::thread_rng();
@@ -9,7 +11,20 @@ pub fn _randd() {
     //print with range[1 to 4]
     let _n2: u8 = rand::thread_rng().gen_range(1..5);
 }
-use std::collections::HashMap;
+
+pub fn configfile() -> String {
+    let configdir = dirs::config_dir()
+        .unwrap()
+        .into_os_string()
+        .into_string()
+        .unwrap()
+        .replace('"', "")
+        .replace("\\", "/");
+    format!("{}/explicits/config.ini", configdir)
+}
+
+
+
 pub struct Player {
     pub name: String,
     pub health: i32,
@@ -66,11 +81,34 @@ impl Player {
     }
     #[allow(dead_code)]
     pub fn power_up(){}
+
+    #[allow(dead_code)]
+    pub fn write_config(&self){
+        std::fs::File();
+        let mut ini = Ini::new();
+        ini.set("player", "name", Some(self.name.clone()));
+        ini.set("player", "health", Some(self.health.to_string()));
+        ini.set("player", "attack", Some(self.attack.to_string()));
+        ini.set("player", "heal", Some(self.heal.to_string()));
+        ini.set("player", "powers", Some(self.powers.clone().into_keys().collect::<Vec<String>>().join(",")));
+        ini.write(configfile()).unwrap();
+
+    }
+    //#[allow(dead_code)]
+    // pub fn load_config(){
+    //     let mut ini = Ini::new();
+    //     ini.load(configfile()).unwrap();
+    //     let name = ini.get("player", "name").unwrap();
+    //     let health = ini.get("player", "health").unwrap();
+    //     let attack = ini.get("player", "attack").unwrap();
+    //     let heal = ini.get("player", "heal").unwrap();
+    //     let powers = ini.get("player", "powers").unwrap();
+    // }
 }
 
 impl Monster {
     pub fn default() -> Monster {
-        let mut m = Monster {
+        let mut m = Monster { 
             name: String::new(),
             health: 100,
             attack: rand::thread_rng().gen_range(16..20),
@@ -103,8 +141,4 @@ impl Monster {
 // todo: impl stats from configuration
 // todo: add leveling system for user and monster
 // todo: add powerups with random damage and cool catchphrases. ✅
-// todo: create implimentation of getch();
-// todo: dehardcode values and add them to a public class scope
-// warning: player's and monsters only die in option 1 of the switch, impliment
-// a global check. 🛑 
 // todo: stat system ✅️
