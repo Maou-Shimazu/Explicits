@@ -3,7 +3,6 @@ use configparser::ini::Ini;
 use std::collections::HashMap;
 use std::{
     fs::File,
-    path::Path,
 };
 use fsio::file;
 
@@ -91,7 +90,7 @@ impl Player {
     pub fn write_config(&self){
         if !file::ensure_exists(&configfile()).is_ok() {
             File::create(&configfile()).expect("Could not create config file."); 
-            println!("{}", configfile());
+            // some welcome new player thing
         }
         let mut ini = Ini::new();
         ini.set("player", "name", Some(self.name.trim().clone().to_owned()));
@@ -102,17 +101,20 @@ impl Player {
         ini.set("player", "map", Some(String::new()));
         ini.write(configfile()).unwrap();
     }
-    //#[allow(dead_code)]
-    // pub fn load_config(){
-    //     let mut ini = Ini::new();
-    //     ini.load(configfile()).unwrap();
-    //     let name = ini.get("player", "name").unwrap();
-    //     let health = ini.get("player", "health").unwrap();
-    //     let attack = ini.get("player", "attack").unwrap();
-    //     let heal = ini.get("player", "heal").unwrap();
-    //     let powers = ini.get("player", "powers").unwrap();
-    // }
-}
+
+    pub fn load_config() -> Player {
+        let mut ini = Ini::new();
+        ini.load(&configfile()).unwrap();
+        Player {
+            name: ini.get("player", "name").unwrap(),
+            health:  ini.get("player", "health").unwrap().parse().unwrap(),
+            attack: ini.get("player", "attack_range").unwrap().parse().unwrap(),
+            heal: ini.get("player", "heal_range").unwrap().parse().unwrap(),
+            powers: /*ini.get("player", "powers").unwrap().parse().unwrap(),*/HashMap::from([(String::from("Freeze"), 6), (String::from("Lava"), 8)]), // todo: fix powers
+            death_message: Vec::new(),
+        }
+    }
+} 
 
 impl Monster {
     pub fn default() -> Monster {

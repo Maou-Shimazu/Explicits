@@ -3,6 +3,7 @@ use explicits::{
     Player,
     Monster,
 };
+use fsio::*;
 // use crossterm::{
 //     event::{self, DisableMouseCapture, EnableMouseCapture, Event, KeyCode},
 //     execute,
@@ -87,7 +88,13 @@ use explicits::{
 // }
 use std::io::{stdout, stdin, Write};
 fn main(){
-    let mut player = Player::default();
+
+
+
+
+    //let mut player = Player::default();
+
+    let mut player: Player = Player::load_config();
     player.power_iter();
     println!();
     println!("Default Heath: {}", player.health);
