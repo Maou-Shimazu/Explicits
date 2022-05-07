@@ -97,7 +97,9 @@ impl Player {
         ini.set("player", "health", Some(self.health.to_string()));
         ini.set("player", "attack_range", Some(self.attack.to_string()));
         ini.set("player", "heal_range", Some(self.heal.to_string()));
-        ini.set("player", "powers", Some(self.powers.clone().into_keys().collect::<Vec<String>>().join(",")));
+        for (section, keys) in &self.powers {
+            ini.set("player.powers", section.as_str(), Some(keys.to_string()));
+        }
         ini.set("player", "map", Some(String::new()));
         ini.write(configfile()).unwrap();
     }
