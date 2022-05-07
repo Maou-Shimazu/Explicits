@@ -1,6 +1,12 @@
 use rand::{prelude::SliceRandom, Rng};
 use configparser::ini::Ini;
 use std::collections::HashMap;
+use std::{
+    fs::File,
+    path::Path,
+};
+use fsio::file;
+
 
 pub fn _randd() {
     let mut rng = rand::thread_rng();
@@ -22,8 +28,6 @@ pub fn configfile() -> String {
         .replace("\\", "/");
     format!("{}/explicits/config.ini", configdir)
 }
-
-
 
 pub struct Player {
     pub name: String,
@@ -82,17 +86,21 @@ impl Player {
     #[allow(dead_code)]
     pub fn power_up(){}
 
+    
     #[allow(dead_code)]
     pub fn write_config(&self){
-        std::fs::File();
+        if !file::ensure_exists(&configfile()).is_ok() {
+            File::create(&configfile()).expect("Could not create config file."); 
+            println!("{}", configfile());
+        }
         let mut ini = Ini::new();
-        ini.set("player", "name", Some(self.name.clone()));
+        ini.set("player", "name", Some(self.name.trim().clone().to_owned()));
         ini.set("player", "health", Some(self.health.to_string()));
-        ini.set("player", "attack", Some(self.attack.to_string()));
-        ini.set("player", "heal", Some(self.heal.to_string()));
+        ini.set("player", "attack_range", Some(self.attack.to_string()));
+        ini.set("player", "heal_range", Some(self.heal.to_string()));
         ini.set("player", "powers", Some(self.powers.clone().into_keys().collect::<Vec<String>>().join(",")));
+        ini.set("player", "map", Some(String::new()));
         ini.write(configfile()).unwrap();
-
     }
     //#[allow(dead_code)]
     // pub fn load_config(){
