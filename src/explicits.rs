@@ -107,6 +107,7 @@ impl Player {
     pub fn load_config() -> Player {
         let mut ini = Ini::new();
         ini.load(&configfile()).unwrap();
+        ini.get_map(); 
         Player {
             name: ini.get("player", "name").unwrap(),
             health:  ini.get("player", "health").unwrap().parse().unwrap(),
