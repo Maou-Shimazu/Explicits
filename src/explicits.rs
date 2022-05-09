@@ -1,11 +1,6 @@
 use rand::{prelude::SliceRandom, Rng};
 use configparser::ini::Ini;
 use std::collections::HashMap;
-use std::{
-    fs::File,
-};
-use fsio::file;
-
 
 pub fn _randd() {
     let mut rng = rand::thread_rng();
@@ -46,12 +41,13 @@ pub struct Monster {
 }
 
 impl Player {
+    #[allow(dead_code)]
     pub fn default() -> Player {
         Player {
             name: String::new(),
             health: 100,
-            attack: rand::thread_rng().gen_range(16..20),
-            heal: rand::thread_rng().gen_range(16..20),
+            attack: rand::thread_rng().gen_range(16..=20),
+            heal: rand::thread_rng().gen_range(16..=20),
             powers: HashMap::from([(String::from("Freeze"), 6), (String::from("Lava"), 8)]),
             death_message: Vec::new(),
         }
@@ -88,10 +84,6 @@ impl Player {
     
     #[allow(dead_code)]
     pub fn write_config(&self){
-        if !file::ensure_exists(&configfile()).is_ok() {
-            File::create(&configfile()).expect("Could not create config file."); 
-            // some welcome new player thing
-        }
         let mut ini = Ini::new();
         ini.set("player", "name", Some(self.name.trim().clone().to_owned()));
         ini.set("player", "health", Some(self.health.to_string()));
@@ -124,7 +116,7 @@ impl Monster {
         let mut m = Monster { 
             name: String::new(),
             health: 100,
-            attack: rand::thread_rng().gen_range(16..20),
+            attack: rand::thread_rng().gen_range(16..=20),
             names: vec![
                 String::from("Marx"),
                 String::from("Bambino"),
@@ -155,3 +147,6 @@ impl Monster {
 // todo: add leveling system for user and monster
 // todo: add powerups with random damage and cool catchphrases. ✅
 // todo: stat system ✅️
+// todo: turn player powers to enum and match them throughout the game
+// todo: store both player powers and ranges as tuples with a `,` delimiter, read and split on delim and store as tuple, unpack into ranges.
+// note: might want to store ranges as enums as well
