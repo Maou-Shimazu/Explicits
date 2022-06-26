@@ -1,6 +1,6 @@
 *.exe
 *.cc
-
+*.spec
 # Added by cargo
 
 /target
@@ -11,3 +11,4 @@
 # already existing elements were commented out
 
 #/target
+/build
