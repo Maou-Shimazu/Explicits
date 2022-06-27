@@ -1,5 +1,6 @@
 import pytermgui as ptg
 from widgets.main_window import Main_Window
+import explicits.player_info as exp
 
 def main():
     with ptg.WindowManager() as manager:

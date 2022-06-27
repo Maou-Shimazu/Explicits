@@ -19,7 +19,7 @@ pub fn configfile() -> String {
         .into_string()
         .unwrap()
         .replace('"', "")
-        .replace("\\", "/");
+        .replace('\\', "/");
     format!("{}/explicits/config.ini", configdir)
 }
 
@@ -85,7 +85,7 @@ impl Player {
     #[allow(dead_code)]
     pub fn write_config(&self){
         let mut ini = Ini::new();
-        ini.set("player", "name", Some(self.name.trim().clone().to_owned()));
+        ini.set("player", "name", Some(self.name.trim().to_owned()));
         ini.set("player", "health", Some(self.health.to_string()));
         ini.set("player", "attack_range", Some(self.attack.to_string()));
         ini.set("player", "heal_range", Some(self.heal.to_string()));
@@ -143,10 +143,10 @@ impl Monster {
     }
 }
 
-// todo: impl stats from configuration
-// todo: add leveling system for user and monster
-// todo: add powerups with random damage and cool catchphrases. ✅
-// todo: stat system ✅️
-// todo: turn player powers to enum and match them throughout the game
-// todo: store both player powers and ranges as tuples with a `,` delimiter, read and split on delim and store as tuple, unpack into ranges.
-// note: might want to store ranges as enums as well
+// TODO: impl stats from configuration
+// TODO: add leveling system for user and monster
+// TODO: add powerups with random damage and cool catchphrases. ✅
+// TODO: stat system ✅️
+// TODO: turn player powers to enum and match them throughout the game
+// TODO: store both player powers and ranges as tuples with a `,` delimiter, read and split on delim and store as tuple, unpack into ranges.
+// NOTE: might want to store ranges as enums as well

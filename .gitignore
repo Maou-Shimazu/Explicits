@@ -1,11 +1,12 @@
 *.exe
 *.cc
 *.spec
+*.pyc
 # Added by cargo
 
 /target
 /.vscode
-
+/dist
 # Added by cargo
 #
 # already existing elements were commented out
