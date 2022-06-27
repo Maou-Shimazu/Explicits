@@ -3,4 +3,4 @@ run:
 
 exe:
 	@pyinstaller --onefile main.py -n Explicits
-	@./dist/Explicits.exe
+	@./dist/Explicits
