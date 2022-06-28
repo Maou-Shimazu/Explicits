@@ -4,3 +4,5 @@
 2022-06-27 13:33:30,628 - config.py - setup - Line: 11 - INFO - Setting Up Explicits Configuration.
 2022-06-27 13:33:30,628 - config.py - setup - Line: 15 - INFO - /home/maou/.config/Explicits/config.toml Created.
 2022-06-27 13:33:30,629 - config.py - setup - Line: 17 - INFO - Config Created.
+2022-06-27 23:30:06,144 - config.py - setup - Line: 13 - INFO - Setting Up Explicits Configuration.
+2022-06-27 23:30:06,144 - config.py - setup - Line: 21 - INFO - Configuration Loaded
