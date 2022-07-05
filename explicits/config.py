@@ -60,5 +60,5 @@ class Config():
     def set_location(self) -> None:
         pass
 
-Config().get_attack_range()
+# Config().get_attack_range()
 
