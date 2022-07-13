@@ -13,7 +13,7 @@ class Player():
         self.heal: int = random.randint(16, 20) # | range in config
         self.powers: dict[str, int] = {"Freeze" : 6, "Burn": 8}
         self.death_message: list[str] = ["The Hero Has fallen"]
-        self.location: str = None
+        self.location: None = None
 
 class Monster():
     def __init__(self):

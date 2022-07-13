@@ -20,7 +20,7 @@ class Config():
         else:
             logger.info("Configuration Loaded")
 
-    def locations(self) -> str:
+    def locations(self) -> None:
         print(self.dir.user_config_dir)
         print(self.config)
     
@@ -36,13 +36,13 @@ class Config():
     def set_player_health(self) -> None:
         pass
 
-    def get_attack_range(self) -> list[str, str]:
+    def get_attack_range(self) -> list[str]:
         return self.content["player"]["attack"]
 
     def set_attack_range(self) -> None:
         pass
 
-    def get_heal_range(self) -> list[str, str]:
+    def get_heal_range(self) -> list[str]:
         return self.content["player"]["heal"]
 
     def set_heal_range(self) -> None:
