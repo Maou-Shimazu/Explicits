@@ -10,10 +10,10 @@ class Player():
         self.name: str = config.get_player_name() or name
         self.health: int = config.get_player_health() | 100
         self.attack: int = random.randint(config.get_attack_range()[0], config.get_attack_range()[1]) | random.randint(16, 20)
-        self.heal: int = random.randint(16, 20) # | range in config
+        self.heal: int = random.randint(config.get_heal_range()[0], config.get_heal_range()[1]) | random.randint(16, 20)
         self.powers: dict[str, int] = {"Freeze" : 6, "Burn": 8}
         self.death_message: list[str] = ["The Hero Has fallen"]
-        self.location: None = None
+        self.location: str | None = config.get_location() | None 
 
 class Monster():
     def __init__(self):

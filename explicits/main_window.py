@@ -1,25 +1,17 @@
 
-import pytermgui as ptg
+from textual.widget import Widget
+from textual.widget import Reactive
+from textual.widget import Panel
+from rich.align import Align
 
-class Main_Window(ptg.WindowManager):   
+class Main_Window(Widget):   
+    mouse_over = Reactive(False)
 
-    def dashboard(self):
-        pass
-    def player_information(self):
-        pass
+    def render(self) -> Panel:
+        return Panel(Align.center("[b]Dashboard[/b]"))
 
-    def quit(self) -> None:
-        """Quit Modal"""
-        modal = ptg.Window(
-            "[app.title]Are you sure you wannt to quit?",
-            "",
-            ptg.Container(
-                ptg.Splitter(
-                    ptg.Button("Yes", lambda *_: self.stop()),
-                    ptg.Button("No", lambda *_: modal.close())
-                ),
-            ),
-        ).center()
+    def on_enter(self) -> None:
+        self.mouse_over = True
 
-        modal.select(1)
-        self.add(modal)
+    def on_leave(self) -> None:
+        self.mouse_over = False

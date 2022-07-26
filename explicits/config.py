@@ -1,5 +1,5 @@
 from appdirs import *
-from .log import logger
+from log import logger
 import os
 import toml
 
